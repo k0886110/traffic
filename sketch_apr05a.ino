@@ -15,8 +15,8 @@
 #define yellowBlinkTime 500
 
 boolean trafficWest = true; // west = true, east = false
-int flowTime = 1000; //10000
-int changeDelay = 200; // 2000
+int flowTime = 2500; //10000
+int changeDelay = 1000; // 2000
 
 
 
@@ -43,7 +43,7 @@ void setup()
   digitalWrite(eastGreen, LOW);
   digitalWrite(epedBlue, LOW);
   digitalWrite(wpedBlue, LOW);
-  digitalWrite(epedButton, LOW);
+
 }
 
 void loop()
@@ -98,41 +98,25 @@ void loop()
       digitalWrite(eastGreen, HIGH);
     }
   }
-    if ( digitalRead(epedButton) == HIGH) // East pedestrian button funtion
+
+    if (digitalRead(epedButton) == HIGH) 
+    if (digitalRead(wpedButton) == HIGH) // East pedestrian button funtion
     {
-
+      if(trafficWest == true);
       {
-        delay(flowTime);
-        digitalWrite(westGreen, LOW);
-        digitalWrite(eastGreen, LOW);
-        digitalWrite(westRed, HIGH);
-        digitalWrite(eastRed, HIGH);
-        digitalWrite(epedBlue, HIGH);
-        delay(10000);
-        for ( int a = 0; a < 5; a++)
-        {
-          digitalWrite(epedBlue, LOW);
-          delay(1000);
-        }
-
-      }
-    }
-    if ( digitalRead(wpedButton) == HIGH) // East pedestrian button funtion
-    {
-
-      {
+        trafficWest = false;
         delay(flowTime);
         digitalWrite(westGreen, LOW);
         digitalWrite(eastGreen, LOW);
         digitalWrite(westRed, HIGH);
         digitalWrite(eastRed, HIGH);
         digitalWrite(wpedBlue, HIGH);
-        delay(10000);
-        for ( int a = 0; a < 5; a++)
-        {
-          digitalWrite(wpedBlue, LOW);
-          delay(1000);
-        }
+        digitalWrite(epedBlue, HIGH);
+        delay(2000);
+        digitalWrite(wpedBlue, LOW);
+        digitalWrite(epedBlue, LOW);
+        delay(2000);
+        
       
     }
   }
